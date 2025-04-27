@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Body Styling */
+  body {
+    background-color: #0d0d0d;
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 16px;
+    overflow-x: hidden;
+  }
+  
+  /* Terminal Styling */
+  .terminal {
+    max-width: 900px;
+    margin: 50px auto;
+    padding: 30px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #00ff00;
+    position: relative;
+    z-index: 1;
+    min-height: 300px;
+    height: auto;
+  }
+  
+  /* Terminal Background Grid Effect */
+  .terminal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 255, 0, 0.1),
+      rgba(0, 255, 0, 0.1) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    z-index: 2;
+    pointer-events: none;
+  }
+  
+  /* Flickering Text Animation */
+  .flicker {
+    animation: flickerAnimation 2s infinite;
+  }
+  
+  @keyframes flickerAnimation {
+    0%   { opacity: 1; }
+    5%   { opacity: 0.5; }
+    10%  { opacity: 1; }
+    25%  { opacity: 0.3; }
+    30%  { opacity: 1; }
+    40%  { opacity: 0.8; }
+    100% { opacity: 1; }
+  }
+  
+  /* Typewriter Effect */
+  .typewriter {
+    overflow: hidden;
+    border-right: .15em solid #00ff00;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+    width: fit-content;
+  }
+  
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+  
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00ff00 }
+  }
+  
+  /* Command Input & Button Styling */
+  input, button {
+    background-color: transparent;
+    border: 2px solid #00ff00;
+    color: #00ff00;
+    padding: 10px 20px;
+    margin: 10px 0;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: 0.3s ease;
+    box-shadow: 0 0 10px #00ff00;
+  }
+  
+  /* Button & Input Focus/Hover Effects */
+  input:focus, button:focus, button:hover {
+    background-color: #00ff00;
+    color: #000;
+    box-shadow: 0 0 20px #00ff00;
+    outline: none;
+  }
+  
+  /* Command Output Styling */
+  .command-output {
+    color: #00ff00;
+    margin: 10px 0;
+    padding-left: 10px;
+  }
+  
+  /* Command Line Styling */
+  .command-line {
+    color: #00ff00;
+    margin-bottom: 10px;
+  }
+  
+  /* Footer Styling */
+  .footer {
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Styling */
+  @media (max-width: 600px) {
+    .terminal {
+      padding: 15px;
+      font-size: 14px;
+    }
+  }

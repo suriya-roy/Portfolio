@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Advanced Hacker Terminal</title>
+  <style>
+    /* Full CSS (from previous answer + advanced effects) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #0d0d0d;
+      color: #00ff00;
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 16px;
+      overflow-x: hidden;
+    }
+
+    .terminal {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.9);
+      border: 2px solid #00ff00;
+      border-radius: 10px;
+      box-shadow: 0 0 20px #00ff00;
+      position: relative;
+      z-index: 1;
+      min-height: 300px;
+      height: auto;
+    }
+
+    .terminal::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: repeating-linear-gradient(
+        to bottom,
+        rgba(0, 255, 0, 0.1),
+        rgba(0, 255, 0, 0.1) 1px,
+        transparent 1px,
+        transparent 3px
+      );
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .flicker {
+      animation: flickerAnimation 2s infinite;
+    }
+
+    @keyframes flickerAnimation {
+      0%   { opacity: 1; }
+      5%   { opacity: 0.5; }
+      10%  { opacity: 1; }
+      25%  { opacity: 0.3; }
+      30%  { opacity: 1; }
+      40%  { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+
+    .typewriter {
+      overflow: hidden;
+      border-right: .15em solid #00ff00;
+      white-space: nowrap;
+      animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+      width: fit-content;
+    }
+
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent }
+      50% { border-color: #00ff00 }
+    }
+
+    input, button {
+      background-color: transparent;
+      border: 2px solid #00ff00;
+      color: #00ff00;
+      padding: 10px 20px;
+      margin: 10px 0;
+      font-size: 16px;
+      border-radius: 5px;
+      transition: 0.3s ease;
+      box-shadow: 0 0 10px #00ff00;
+    }
+
+    input:focus, button:focus, button:hover {
+      background-color: #00ff00;
+      color: #000;
+      box-shadow: 0 0 20px #00ff00;
+      outline: none;
+    }
+
+    .command-output {
+      color: #00ff00;
+      margin: 10px 0;
+      padding-left: 10px;
+    }
+
+    .command-line {
+      color: #00ff00;
+      margin-bottom: 10px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .terminal {
+        padding: 15px;
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="terminal">
+    <div id="output"></div>
+    <div class="command-line">
+      <span>> </span><input id="command-input" type="text" placeholder="Enter command..." autofocus>
+      <button onclick="executeCommand()">Run</button>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p>Terminal v2.0 - Powered by the Code</p>
+  </div>
+
+  <script>
+    // Function to execute commands
+    function executeCommand() {
+      const inputField = document.getElementById('command-input');
+      const outputDiv = document.getElementById('output');
+      const command = inputField.value.trim();
+      inputField.value = ''; // Clear the input field
+      
+      if (command === "") return; // Do nothing if command is empty
+
+      // Add user command to the output
+      outputDiv.innerHTML += `<p class="command-line"><span>> </span>${command}</p>`;
+      outputDiv.innerHTML += `<p class="command-output">Executing...</p>`;
+      
+      // Simulate command responses
+      setTimeout(() => {
+        let response = '';
+
+        switch (command.toLowerCase()) {
+          case 'help':
+            response = '<p class="command-output">Available commands: help, ls, clear, exit</p>';
+            break;
+          case 'ls':
+            response = '<p class="command-output">/home/user/Downloads /home/user/Documents /home/user/Desktop</p>';
+            break;
+          case 'clear':
+            outputDiv.innerHTML = '';
+            break;
+          case 'exit':
+            response = '<p class="command-output">Goodbye!</p>';
+            break;
+          default:
+            response = '<p class="command-output">Command not recognized. Type "help" for a list of commands.</p>';
+            
+        
+        
+          }
+
+        // Show the response after the simulated execution
+        outputDiv.innerHTML += response;
+        
+        // Scroll to the bottom of the terminal output
+        outputDiv.scrollTop = outputDiv.scrollHeight;
+      }, 1000); // Simulate a delay for the command response
+
+      // Autofocus back to the command input
+      setTimeout(() => {
+        inputField.focus();
+      }, 2000);
+    }
+  </script>
+</body>
+</html>

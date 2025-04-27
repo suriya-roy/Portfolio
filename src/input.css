@@ -1,0 +1,10 @@
+@import "tailwindcss";
+body {
+    background: linear-gradient(135deg, rgb(192, 232, 255),rgb(4, 0, 255)
+
+
+    , #ff6a65);
+    background-size: 400% 400%;
+    /* animation: gradientAnimation 10s ease infinite; */
+}
+
