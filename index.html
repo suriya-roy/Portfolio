@@ -4,6 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+
   <title>PORTFOLIO</title>
 </head>
 
@@ -101,7 +103,7 @@
       <h1>SAURYA
 
       </h1>
-      <p>Web Developer | Designer | Problem Solver</p>
+      <p> <span id="element"></span></p>
     </header>
 
     <div class="section" id="about">
@@ -173,6 +175,14 @@
     <footer>
       <p>&copy; 2025 SAURYA-RAYA. All rights reserved.</p>
     </footer>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script>
+      var typed = new Typed('#element', {
+        strings: ['<i>Web Developer</i> Web Designer.', '&'],
+        typeSpeed: 50,
+        loop: true
+      });
+    </script>
   </body>
 
 </html>
